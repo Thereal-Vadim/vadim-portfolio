@@ -469,7 +469,6 @@ body:has([data-hover="no-cursor"]:hover) .custom-cursor {
   align-items: center;
   padding-top: 4rem;
   padding-bottom: 4rem;
-  border-bottom: 1px solid rgba(251, 249, 246, 0.08);
 }
 
 .notable-panel__inner {
@@ -1109,93 +1108,347 @@ body:has([data-hover="no-cursor"]:hover) .custom-cursor {
   max-width: 14rem;
 }
 
-/* Monitor showcase */
+/* Apps showcase — iPhone frame */
 .notable-monitor-scene {
   display: grid;
-  gap: 3rem;
+  gap: 2rem;
   align-items: center;
 }
 
 @media (min-width: 1024px) {
   .notable-monitor-scene {
-    grid-template-columns: minmax(0, 1.15fr) minmax(0, 0.85fr);
-    gap: 4rem;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+    gap: 2rem;
+    max-width: 44rem;
+    margin-inline: auto;
+  }
+
+  .notable-monitor-scene .notable-side--monitor {
+    justify-self: end;
+    align-self: center;
+    padding-right: 0.5rem;
+  }
+
+  .notable-monitor-scene .notable-iphone {
+    justify-self: start;
   }
 }
 
-.notable-monitor {
-  width: min(100%, 34rem);
-  margin-inline: auto;
-}
-
-.notable-monitor__screen {
-  border: 0.85rem solid #111;
-  border-radius: 1.5rem 1.5rem 0 0;
-  background: linear-gradient(180deg, #ef5a43 0%, #d94732 100%);
-  padding: 2rem 1.75rem;
-  min-height: 14rem;
-}
-
-.notable-monitor__screen-grid {
-  display: grid;
-  gap: 1.5rem;
-  color: #fff;
-  font-family: var(--font-plex-mono), ui-monospace, monospace;
-}
-
-@media (min-width: 640px) {
-  .notable-monitor__screen-grid {
-    grid-template-columns: 1fr 1fr;
-    align-items: start;
-  }
-}
-
-.notable-monitor__brand {
-  margin: 0 0 0.35rem;
-  font-size: clamp(2rem, 4vw, 2.75rem);
-  font-weight: 600;
-}
-
-.notable-monitor__role,
-.notable-monitor__pitch {
-  margin: 0;
-  font-size: 0.78rem;
-  line-height: 1.45;
-}
-
-.notable-monitor__base {
+.notable-iphone {
   position: relative;
-  height: 5.5rem;
-  border-radius: 0 0 1.25rem 1.25rem;
-  background: var(--notable-cream);
-  background-image: radial-gradient(#111 11%, transparent 12%);
-  background-size: 0.55rem 0.55rem;
+  width: min(100%, 18.5rem);
+  margin-inline: auto;
+  transform: rotate(4deg);
+  transform-origin: center center;
+  filter: drop-shadow(0 1.5rem 2.5rem rgba(0, 0, 0, 0.35));
 }
 
-.notable-monitor__slot {
+.notable-iphone__svg {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.notable-iphone__screen {
   position: absolute;
-  left: 50%;
-  top: 1.35rem;
-  width: 5.5rem;
-  height: 0.35rem;
-  transform: translateX(-50%);
+  inset: 2.8% 4.2% 2.6%;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  border-radius: 2.35rem;
+  background: linear-gradient(180deg, #fbf9f6 0%, #f3f0ea 100%);
+  color: #181614;
+  font-family: var(--font-figtree), Figtree, sans-serif;
+}
+
+.notable-iphone__status {
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  align-items: center;
+  padding: 0.55rem 1rem 0.35rem;
+  font-size: 0.62rem;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+}
+
+.notable-iphone__time {
+  justify-self: start;
+}
+
+.notable-iphone__island {
+  width: 3.4rem;
+  height: 0.95rem;
   border-radius: 999px;
-  background: #111;
+  background: #0a0a0a;
+  justify-self: center;
 }
 
-.notable-monitor__power {
-  position: absolute;
-  left: 1.25rem;
-  bottom: 1.15rem;
-  width: 0.55rem;
+.notable-iphone__signal {
+  display: flex;
+  gap: 0.12rem;
+  align-items: flex-end;
+  justify-self: end;
+  height: 0.55rem;
+}
+
+.notable-iphone__signal span {
+  display: block;
+  width: 0.18rem;
+  border-radius: 999px;
+  background: #181614;
+}
+
+.notable-iphone__signal span:nth-child(1) {
+  height: 35%;
+}
+
+.notable-iphone__signal span:nth-child(2) {
+  height: 62%;
+}
+
+.notable-iphone__signal span:nth-child(3) {
+  height: 100%;
+}
+
+.notable-iphone-app {
+  flex: 1;
+  display: grid;
+  grid-template-rows: auto 1fr;
+  gap: 0.55rem;
+  padding: 0.75rem 0.85rem 0.25rem;
+  min-height: 0;
+}
+
+.notable-iphone-app__intro {
+  flex-shrink: 0;
+}
+
+.notable-iphone-app__eyebrow {
+  margin: 0 0 0.2rem;
+  font-size: 0.52rem;
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: rgba(24, 22, 20, 0.42);
+}
+
+.notable-iphone-app__brand {
+  margin: 0 0 0.2rem;
+  font-size: clamp(1.35rem, 4vw, 1.55rem);
+  font-weight: 600;
+  line-height: 1.05;
+  letter-spacing: -0.04em;
+}
+
+.notable-iphone-app__role {
+  margin: 0 0 0.3rem;
+  font-family: var(--font-plex-mono), ui-monospace, monospace;
+  font-size: 0.56rem;
+  line-height: 1.35;
+  color: rgba(24, 22, 20, 0.62);
+}
+
+.notable-iphone-app__pitch {
+  margin: 0;
+  font-size: 0.62rem;
+  line-height: 1.38;
+  color: rgba(24, 22, 20, 0.68);
+}
+
+.notable-iphone-app__stages {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 0.35rem;
+  min-height: 0;
+}
+
+.notable-app-stage {
+  margin: 0;
+  flex: 1;
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 0.4rem;
+  align-items: stretch;
+  min-height: 0;
+}
+
+.notable-app-stage__frame {
+  height: 100%;
+  min-height: 2.65rem;
+  border-radius: 0.55rem;
+  overflow: hidden;
+}
+
+.notable-app-stage__label {
+  margin: 0;
+  min-width: 4.1rem;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  font-family: var(--font-plex-mono), ui-monospace, monospace;
+  font-size: 0.48rem;
+  font-weight: 500;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: rgba(24, 22, 20, 0.48);
+  text-align: right;
+}
+
+/* Design — sketch */
+.notable-app-stage--design .notable-app-stage__frame {
+  background:
+    linear-gradient(rgba(24, 22, 20, 0.035) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(24, 22, 20, 0.035) 1px, transparent 1px),
+    #faf8f4;
+  background-size: 0.35rem 0.35rem;
+  border: 1px dashed rgba(24, 22, 20, 0.2);
+}
+
+.notable-app-sketch {
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+  height: 100%;
+  padding: 0.3rem 0.35rem;
+}
+
+.notable-app-sketch__nav {
+  width: 42%;
+  height: 0.22rem;
+  border: 1px dashed rgba(24, 22, 20, 0.28);
+  border-radius: 0.1rem;
+}
+
+.notable-app-sketch__line {
+  height: 0.16rem;
+  width: 72%;
+  border: 1px solid rgba(24, 22, 20, 0.28);
+  border-radius: 999px;
+}
+
+.notable-app-sketch__line--lg {
+  width: 88%;
+  height: 0.22rem;
+}
+
+.notable-app-sketch__blocks {
+  display: flex;
+  gap: 0.2rem;
+  margin-top: auto;
+}
+
+.notable-app-sketch__blocks span {
+  flex: 1;
+  height: 0.55rem;
+  border: 1px dashed rgba(24, 22, 20, 0.22);
+  border-radius: 0.12rem;
+}
+
+/* Development — wireframe / code */
+.notable-app-stage--dev .notable-app-stage__frame {
+  background: #f0f0f0;
+  border: 1px solid rgba(24, 22, 20, 0.08);
+}
+
+.notable-app-dev {
+  display: flex;
+  flex-direction: column;
+  gap: 0.18rem;
+  height: 100%;
+  padding: 0.28rem 0.35rem;
+}
+
+.notable-app-dev__tag {
+  width: fit-content;
+  padding: 0.05rem 0.2rem;
+  border-radius: 0.15rem;
+  background: rgba(24, 22, 20, 0.08);
+  font-family: var(--font-plex-mono), ui-monospace, monospace;
+  font-size: 0.42rem;
+  color: rgba(24, 22, 20, 0.55);
+}
+
+.notable-app-dev__block {
+  height: 0.18rem;
+  width: 58%;
+  border-radius: 0.08rem;
+  background: #d0d0d0;
+}
+
+.notable-app-dev__block--wide {
+  width: 78%;
+  height: 0.24rem;
+  background: #c4c4c4;
+}
+
+.notable-app-dev__row {
+  display: flex;
+  gap: 0.18rem;
+  margin-top: auto;
+}
+
+.notable-app-dev__row span {
+  flex: 1;
+  height: 0.5rem;
+  border-radius: 0.1rem;
+  background: #e0e0e0;
+  border: 1px solid #ccc;
+}
+
+/* Release — polished UI */
+.notable-app-stage--release .notable-app-stage__frame {
+  background: #fff;
+  border: 1px solid rgba(24, 22, 20, 0.08);
+  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.8);
+}
+
+.notable-app-release {
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
+  height: 100%;
+  padding: 0.3rem 0.4rem;
+}
+
+.notable-app-release__icon {
+  flex-shrink: 0;
+  width: 1.15rem;
+  height: 1.15rem;
+  border-radius: 0.28rem;
+  background: linear-gradient(145deg, #181614 0%, #3a3530 100%);
+  box-shadow: 0 0.15rem 0.35rem rgba(24, 22, 20, 0.15);
+}
+
+.notable-app-release__title {
+  flex: 1;
+  height: 0.22rem;
+  border-radius: 0.08rem;
+  background: #181614;
+  opacity: 0.85;
+}
+
+.notable-app-release__btn {
+  flex-shrink: 0;
+  width: 1.35rem;
   height: 0.55rem;
   border-radius: 999px;
-  background: #ef5346;
-  box-shadow: 0 0 0.5rem rgba(239, 83, 70, 0.8);
+  background: #181614;
+  opacity: 0.72;
+}
+
+.notable-iphone__home-bar {
+  flex-shrink: 0;
+  width: 32%;
+  height: 0.22rem;
+  margin: 0.45rem auto 0.55rem;
+  border-radius: 999px;
+  background: rgba(24, 22, 20, 0.82);
 }
 
 .notable-side--monitor {
   gap: 1.25rem;
+  max-width: 16rem;
 }
 
 /* Wristband showcase */

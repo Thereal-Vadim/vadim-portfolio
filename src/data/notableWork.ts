@@ -15,6 +15,9 @@ export type NotableWorkShowcase = {
   tagDescription?: string;
   tagCode?: string;
   tagUrl?: string;
+  monitorBrand?: string;
+  monitorRole?: string;
+  monitorPitch?: string;
 };
 
 export const notableWorkShowcases: NotableWorkShowcase[] = [
@@ -52,16 +55,14 @@ export const notableWorkShowcases: NotableWorkShowcase[] = [
     ],
   },
   {
-    id: "dotslash",
+    id: "apps",
     type: "monitor",
+    monitorBrand: "Apps",
+    monitorRole: "Mobile & web products",
+    monitorPitch: "Human-centric products built to solve real problems.",
     insight: "Learnt how to make a good design, great.",
     notableLabel: "Notable work",
-    items: [
-      { label: "Dekra" },
-      { label: "Balwin Fibre" },
-      { label: "Junk Mail" },
-      { label: "+4 other large projects..." },
-    ],
+    items: [{ label: "Efsy" }, { label: "GrossGrowth" }, { label: "Gymini" }],
   },
   {
     id: "pulse",
