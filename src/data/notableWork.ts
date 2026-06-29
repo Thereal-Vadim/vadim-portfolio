@@ -7,7 +7,7 @@ export type NotableWorkItem = {
 
 export type NotableWorkShowcase = {
   id: string;
-  type: "tag" | "monitor" | "wristband" | "ticket";
+  type: "tag" | "monitor" | "wristband";
   insight: string;
   notableLabel?: string;
   items: NotableWorkItem[];
@@ -18,6 +18,9 @@ export type NotableWorkShowcase = {
   monitorBrand?: string;
   monitorRole?: string;
   monitorPitch?: string;
+  wristbandTitle?: string;
+  wristbandDesc?: string;
+  wristbandSerial?: string;
 };
 
 export const notableWorkShowcases: NotableWorkShowcase[] = [
@@ -65,22 +68,13 @@ export const notableWorkShowcases: NotableWorkShowcase[] = [
     items: [{ label: "Efsy" }, { label: "GrossGrowth" }, { label: "Gymini" }],
   },
   {
-    id: "pulse",
+    id: "brand-system",
     type: "wristband",
-    insight: "Learnt that design is a team's sports that involves people outside of design",
+    wristbandTitle: "Brand System",
+    wristbandDesc: "Logo, brochures, web — one design language for the whole brand",
+    wristbandSerial: "DS2024",
+    insight: "A brand only feels real when every touchpoint speaks the same language.",
     notableLabel: "Notable work",
-    items: [
-      { label: "Stream uploader" },
-      { label: "Home feed" },
-      { label: "Race platform" },
-      { label: "Event timeline" },
-    ],
-  },
-  {
-    id: "heygo",
-    type: "ticket",
-    insight: "Learnt design is a powerful alignment tool",
-    notableLabel: "Notable work",
-    items: [{ label: "Streaming UI" }, { label: "Stream creator" }],
+    items: [{ label: "MSM Academy" }, { label: "Football Academy" }],
   },
 ];

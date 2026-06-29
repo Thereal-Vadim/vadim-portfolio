@@ -56,48 +56,29 @@ export function AboutSection() {
             >
               <div className="space-y-4 text-[0.9375rem] leading-relaxed">
                 <p>
-                  <a href="#" className="underline underline-offset-2">
-                    Amit Chakrabarti
-                  </a>{" "}
-                  is an independent designer and Webflow developer with over twenty
-                  years&apos; experience. He&apos;s created brands, websites, campaigns
-                  and everything in between – for global multinationals, scrappy
-                  startups and the organisations that matter most to him.
+                  Vadim Filatov is a Prague-based UI/UX engineer and visual designer
+                  bridging the gap between clean aesthetics and frontend code. With 3
+                  years of experience in marketing and branding, he launches
+                  high-converting websites and human-centric digital products for
+                  forward-thinking small businesses and independent founders.
                 </p>
                 <p>
-                  As a{" "}
-                  <a href="#" className="underline underline-offset-2">
-                    Webflow Certified Partner
-                  </a>
-                  , he builds sites that clients can actually manage themselves —
-                  fast, flexible, and free from the constraints of legacy platforms
-                  or development backlogs.
+                  By combining structured visual languages with production-ready React
+                  and Next.js code, he delivers fast, intuitive interfaces. Every
+                  system is optimized for performance and completely free from the
+                  typical disconnect between design and development.
                 </p>
               </div>
               <div className="space-y-4 text-[0.9375rem] leading-relaxed">
                 <p>
-                  Working directly with founders, marketing teams and agencies, Amit
-                  brings the full picture to every project – strategy,{" "}
-                  <a href="#" className="underline underline-offset-2">
-                    design
-                  </a>{" "}
-                  and{" "}
-                  <a href="#" className="underline underline-offset-2">
-                    development
-                  </a>{" "}
-                  under one roof, without the overhead of an agency. No account
-                  managers, no handoffs.
+                  Working directly with founders and product teams, Vadim brings a
+                  holistic, business-minded lens to every project—uniting strategy,
+                  UI/UX design, and front-end execution. No agency overhead, no
+                  account managers, and no clumsy handoffs.
                 </p>
                 <p>
-                  One point of{" "}
-                  <a href="#" className="underline underline-offset-2">
-                    contact
-                  </a>
-                  , considered{" "}
-                  <a href="#" className="underline underline-offset-2">
-                    work
-                  </a>
-                  , and results built to last.
+                  One clear point of contact, structured design, and products built
+                  to scale.
                 </p>
               </div>
             </div>
