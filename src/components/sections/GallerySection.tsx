@@ -1,62 +1,28 @@
 "use client";
 
-import Image from "next/image";
-import Link from "next/link";
-import { projects } from "@/data/content";
-import { PlusSign } from "@/components/ui/PlusSign";
+import { Caveat, IBM_Plex_Mono } from "next/font/google";
+import { NotableWorkGallery } from "@/components/sections/notable-work/NotableWorkGallery";
 
-export function GallerySection() {
-  const duplicatedProjects = [...projects, ...projects];
+const caveat = Caveat({
+  subsets: ["latin"],
+  weight: ["400", "500", "600", "700"],
+  variable: "--font-caveat",
+});
 
+const plexMono = IBM_Plex_Mono({
+  subsets: ["latin"],
+  weight: ["400", "500", "600"],
+  variable: "--font-plex-mono",
+});
+
+export function GallerySection({ id }: { id?: string }) {
   return (
     <section
+      id={id}
       data-scroll="dark"
-      className="section-gallery theme-dark overflow-hidden bg-[var(--color-background)] py-16 text-[var(--color-text)]"
+      className={`section-gallery theme-dark bg-[var(--color-background)] text-[var(--color-text)] ${caveat.variable} ${plexMono.variable}`}
     >
-      <div className="flex gap-16 overflow-hidden">
-        <div className="scroll-marquee flex shrink-0 gap-16">
-          {duplicatedProjects.map((project, index) => (
-            <GalleryItem key={`${project.title}-${index}`} project={project} />
-          ))}
-        </div>
-        <div className="scroll-marquee flex shrink-0 gap-16" aria-hidden="true">
-          {duplicatedProjects.map((project, index) => (
-            <GalleryItem key={`dup-${project.title}-${index}`} project={project} />
-          ))}
-        </div>
-      </div>
+      <NotableWorkGallery />
     </section>
-  );
-}
-
-function GalleryItem({
-  project,
-}: {
-  project: (typeof projects)[number];
-}) {
-  return (
-    <Link
-      href={project.href}
-      data-hover="no-cursor"
-      className="group relative block shrink-0"
-    >
-      <Image
-        src={project.image}
-        alt={project.title}
-        width={800}
-        height={533}
-        className="aspect-[3/2] max-w-[40vw] object-cover"
-      />
-      <div className="pointer-events-none absolute inset-0 flex flex-col items-center justify-center opacity-0 transition-opacity duration-300 group-hover:opacity-100">
-        <div className="flex gap-2">
-          <PlusSign className="h-4 w-4" />
-          <PlusSign className="h-4 w-4" />
-        </div>
-        <div className="mt-2 flex gap-2">
-          <PlusSign className="h-4 w-4" />
-          <PlusSign className="h-4 w-4" />
-        </div>
-      </div>
-    </Link>
   );
 }

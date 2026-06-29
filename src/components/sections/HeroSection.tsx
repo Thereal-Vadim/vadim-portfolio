@@ -1,6 +1,7 @@
 "use client";
 
 import { useRef } from "react";
+import { PortraitFlipCard } from "@/components/ui/PortraitFlipCard";
 import { useHeroAnimation } from "@/hooks/useHeroAnimation";
 
 export function HeroSection() {
@@ -15,8 +16,8 @@ export function HeroSection() {
     >
       <div className="padding-global">
         <div className="container-large">
-          <div className="padding-section-large">
-            <div className="flex w-full items-center justify-center">
+          <div className="padding-section-large pb-12">
+            <div className="flex w-full flex-col items-center">
               <div className="w-full text-center">
                 <h1 className="heading-h1">
                   designing (<span data-hero-word="1">&nbsp;</span>)
@@ -24,6 +25,10 @@ export function HeroSection() {
                 <h1 className="heading-h1 mt-4">
                   for (<span data-hero-word="2">&nbsp;</span>)
                 </h1>
+              </div>
+
+              <div className="hero-portrait-wrap mt-14 w-full max-w-[18rem] sm:max-w-[20rem]">
+                <PortraitFlipCard priority />
               </div>
             </div>
           </div>

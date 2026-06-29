@@ -8,9 +8,9 @@ const LINES = [
   { id: "2", key: "clients" as const },
 ] as const;
 
-const CHAR_STAGGER_MS = 22;
-const TRANSITION_MS = 300;
-const HOLD_MS = 1500;
+const CHAR_STAGGER_MS = 48;
+const TRANSITION_MS = 550;
+const HOLD_MS = 2400;
 const INITIAL_DELAY_MS = 1500;
 
 export function useHeroAnimation(containerRef: React.RefObject<HTMLElement | null>) {

@@ -60,20 +60,24 @@ export function Navbar() {
       }`}
     >
       <div className="padding-global">
-        <div className="container-large relative flex min-h-[4.5rem] items-center">
+        <div className="container-large grid min-h-[4.5rem] grid-cols-3 items-center">
           <NavLogo />
 
           <button
             type="button"
             data-hover="no-cursor"
-            className="nav-menu-trigger absolute left-1/2 z-10 -translate-x-1/2 border-0 bg-transparent p-0 text-[1.125rem] font-bold leading-none text-inherit"
+            className="nav-menu-trigger justify-self-center border-0 bg-transparent p-0 text-[1.125rem] font-bold leading-none text-inherit"
             onClick={() => setOpen((value) => !value)}
             aria-expanded={open}
             aria-haspopup="dialog"
             aria-label={open ? "Close menu" : "Open menu"}
           >
-            ( )
+            (menu)
           </button>
+
+          <span className="justify-self-end text-[1.125rem] font-bold leading-none">
+            (since 2020)
+          </span>
         </div>
       </div>
 
