@@ -1,6 +1,10 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
+  devIndicators: {
+    position: "bottom-right",
+  },
+  transpilePackages: ["@mediapipe/tasks-vision"],
   images: {
     remotePatterns: [
       {

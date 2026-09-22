@@ -72,7 +72,7 @@ export function AboutSection() {
               <div className="space-y-4 text-[0.9375rem] leading-relaxed">
                 <p>
                   Working directly with founders and product teams, Vadim brings a
-                  holistic, business-minded lens to every project—uniting strategy,
+                  holistic, business-minded lens to every project - uniting strategy,
                   UI/UX design, and front-end execution. No agency overhead, no
                   account managers, and no clumsy handoffs.
                 </p>

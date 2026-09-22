@@ -2,7 +2,7 @@
 
 import dynamic from "next/dynamic";
 import { useEffect, useRef } from "react";
-import { services } from "@/data/content";
+import { services, pricingNote } from "@/data/content";
 import { AnimatedTitle } from "@/components/ui/AnimatedTitle";
 import { ButtonLink } from "@/components/ui/ButtonLink";
 
@@ -38,57 +38,57 @@ export function ServicesSection() {
   }, []);
 
   return (
-    <>
-      <header
-        data-scroll="dark"
-        className="theme-dark bg-[var(--color-background)] text-[var(--color-text)]"
-      >
-        <div className="padding-global">
-          <div className="container-large">
-            <div className="padding-section-large">
-              <div className="max-w-5xl">
-                <AnimatedTitle
-                  headline="Let's make something."
-                  alternate="Good work starts here."
-                  singleLine
-                />
-              </div>
+    <section
+      data-scroll="dark"
+      className="theme-dark bg-[var(--color-background)] pb-16 text-[var(--color-text)]"
+    >
+      <div className="padding-global">
+        <div className="container-large">
+          <div className="services-intro">
+            <div className="max-w-5xl">
+              <AnimatedTitle
+                headline="Let's make something."
+                alternate="Good work starts here."
+                singleLine
+              />
             </div>
           </div>
-        </div>
-      </header>
 
-      <section
-        data-scroll="dark"
-        className="theme-dark bg-[var(--color-background)] pb-28 text-[var(--color-text)]"
-      >
-        <div className="padding-global">
-          <div className="container-large">
-            <div
-              ref={gridRef}
-              className="fade-in-stagger grid gap-12 md:grid-cols-3"
-            >
-              {services.map((service) => (
-                <div key={service.eyebrow} className="flex flex-col">
-                  <div className="mb-6 aspect-square overflow-hidden rounded-[var(--radius-large)]">
-                    {service.animationType === "rive" ? (
-                      <RiveAnimation src={service.animation} className="h-full w-full" />
-                    ) : (
-                      <LottieAnimation src={service.animation} className="h-full w-full" />
-                    )}
-                  </div>
-                  <p className="eyebrow mb-2">{service.eyebrow}</p>
-                  <h3 className="heading-h5 mb-3">{service.title}</h3>
-                  <p className="mb-6 text-[0.9375rem] leading-relaxed">{service.description}</p>
-                  <ButtonLink href={service.href} flipArrow={service.eyebrow === "Webflow"}>
-                    {service.linkText}
-                  </ButtonLink>
+          <div
+            ref={gridRef}
+            className="fade-in-stagger grid gap-12 md:grid-cols-3"
+          >
+            {services.map((service) => (
+              <div key={service.eyebrow} className="flex flex-col">
+                <div className="services-media mb-5 overflow-hidden rounded-[var(--radius-large)]">
+                  {service.animationType === "rive" ? (
+                    <RiveAnimation src={service.animation} className="h-full w-full" />
+                  ) : (
+                    <LottieAnimation src={service.animation} className="h-full w-full" />
+                  )}
                 </div>
-              ))}
+                <p className="eyebrow mb-2">{service.eyebrow}</p>
+                <h3 className="heading-h5 mb-3">{service.title}</h3>
+                <p className="mb-6 text-[0.9375rem] leading-relaxed">{service.description}</p>
+                <ButtonLink href={service.href}>
+                  {service.linkText}
+                </ButtonLink>
+              </div>
+            ))}
+          </div>
+
+          <div className="pricing-note">
+            <div>
+              <p className="eyebrow mb-2">{pricingNote.eyebrow}</p>
+              <h3 className="heading-h5 m-0">{pricingNote.headline}</h3>
+            </div>
+            <div className="pricing-note-copy">
+              <p>{pricingNote.body}</p>
+              <ButtonLink href="/contact">talk through the brief</ButtonLink>
             </div>
           </div>
         </div>
-      </section>
-    </>
+      </div>
+    </section>
   );
 }

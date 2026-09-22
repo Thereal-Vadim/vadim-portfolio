@@ -47,7 +47,7 @@ export function HeySection() {
                   </p>
                   <p className="m-0">
                     With 5 years of experience in branding and marketing, I design and develop
-                    human-centric utilities for personal organization and small businesses—including
+                    human-centric utilities for personal organization and small businesses - including
                     GrossGrowth and Efsy.
                   </p>
                 </div>

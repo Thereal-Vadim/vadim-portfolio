@@ -1,9 +1,5 @@
-"use client";
-
-import { useEffect, useState } from "react";
-import { createPortal } from "react-dom";
 import type { NotableWorkShowcase } from "@/data/notableWork";
-import { ProjectPreviewCard } from "@/components/sections/notable-work/ProjectPreviewCard";
+import { NotablePreviewList } from "@/components/sections/notable-work/NotablePreviewList";
 
 function domainFromHref(href: string) {
   try {
@@ -13,65 +9,10 @@ function domainFromHref(href: string) {
   }
 }
 
-function pointerFromTarget(target: EventTarget & { getBoundingClientRect: () => DOMRect }) {
-  const rect = target.getBoundingClientRect();
-  return { x: rect.right, y: rect.top + rect.height / 2 };
-}
-
 export function ShowcaseTag({ showcase }: { showcase: NotableWorkShowcase }) {
-  const [activeIndex, setActiveIndex] = useState<number | null>(null);
-  const [cursor, setCursor] = useState<{ x: number; y: number } | null>(null);
-  const [followCursor, setFollowCursor] = useState(false);
-  const [mounted, setMounted] = useState(false);
-
-  useEffect(() => {
-    setMounted(true);
-
-    const mediaQuery = window.matchMedia("(min-width: 1024px)");
-    const updateFollow = () => setFollowCursor(mediaQuery.matches);
-    updateFollow();
-    mediaQuery.addEventListener("change", updateFollow);
-
-    return () => mediaQuery.removeEventListener("change", updateFollow);
-  }, []);
-
   const activeUrl =
     showcase.tagUrl ??
     domainFromHref(showcase.items.find((item) => item.href)?.href ?? "https://example.com");
-
-  const activeItem = activeIndex !== null ? showcase.items[activeIndex] : null;
-  const hasPreview = showcase.items.some((item) => item.previewImage || item.previewCaption);
-
-  const handleActivate = (
-    index: number,
-    target: EventTarget & { getBoundingClientRect: () => DOMRect },
-    event?: React.MouseEvent,
-  ) => {
-    setActiveIndex(index);
-    setCursor(event ? { x: event.clientX, y: event.clientY } : pointerFromTarget(target));
-  };
-
-  const handlePointerMove = (event: React.MouseEvent) => {
-    if (!followCursor || activeIndex === null) {
-      return;
-    }
-    setCursor({ x: event.clientX, y: event.clientY });
-  };
-
-  const handleLeave = () => {
-    setActiveIndex(null);
-    setCursor(null);
-  };
-
-  const previewCard =
-    hasPreview && activeItem ? (
-      <ProjectPreviewCard
-        item={activeItem}
-        visible={activeIndex !== null}
-        followCursor={followCursor}
-        position={cursor}
-      />
-    ) : null;
 
   return (
     <div className="notable-panel notable-panel--tag padding-global">
@@ -195,55 +136,13 @@ export function ShowcaseTag({ showcase }: { showcase: NotableWorkShowcase }) {
             </div>
           </div>
 
-          <div
-            className="notable-side-area"
-            onMouseLeave={handleLeave}
-            onMouseMove={handlePointerMove}
-          >
-            {!followCursor ? previewCard : null}
-
-            <div className="notable-side">
-              <p className="notable-side__label">{showcase.notableLabel}</p>
-              <ul
-                className={`notable-side__list${activeIndex !== null ? " notable-side__list--dimmed" : ""}`}
-              >
-                {showcase.items.map((item, index) => (
-                  <li
-                    key={item.label}
-                    className={activeIndex === index ? "notable-side__item--active" : undefined}
-                  >
-                    {item.href ? (
-                      <a
-                        href={item.href}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className={`notable-side__link${activeIndex === index ? " notable-side__link--active" : ""}`}
-                        onMouseEnter={(event) => handleActivate(index, event.currentTarget, event)}
-                        onFocus={(event) => handleActivate(index, event.currentTarget)}
-                      >
-                        {item.label}
-                      </a>
-                    ) : (
-                      <span
-                        className="notable-side__link"
-                        onMouseEnter={(event) => handleActivate(index, event.currentTarget, event)}
-                        onFocus={(event) => handleActivate(index, event.currentTarget)}
-                      >
-                        {item.label}
-                      </span>
-                    )}
-                  </li>
-                ))}
-              </ul>
-              <p className="notable-side__note">{showcase.insight}</p>
-            </div>
-          </div>
+          <NotablePreviewList
+            items={showcase.items}
+            notableLabel={showcase.notableLabel}
+            note={showcase.insight}
+          />
         </div>
       </div>
-
-      {mounted && followCursor && previewCard
-        ? createPortal(previewCard, document.body)
-        : null}
     </div>
   );
 }

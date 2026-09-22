@@ -1,21 +1,10 @@
 "use client";
 
-import dynamic from "next/dynamic";
 import Link from "next/link";
 import { useEffect, useState } from "react";
 import { navLinks, services } from "@/data/content";
 import { ButtonLink } from "@/components/ui/ButtonLink";
 import { NavLogo } from "@/components/ui/NavLogo";
-
-const LottieAnimation = dynamic(
-  () => import("@/components/ui/LottieAnimation").then((m) => m.LottieAnimation),
-  { ssr: false },
-);
-
-const RiveAnimation = dynamic(
-  () => import("@/components/ui/RiveAnimation").then((m) => m.RiveAnimation),
-  { ssr: false },
-);
 
 export function Navbar() {
   const [open, setOpen] = useState(false);
@@ -39,11 +28,18 @@ export function Navbar() {
 
   useEffect(() => {
     const onScroll = () => {
-      const gallery = document.querySelector("[data-scroll='dark'].section-gallery");
-      if (!gallery) return;
+      const headerY = 36;
+      const darkSections = document.querySelectorAll("[data-scroll='dark']");
+      let dark = false;
 
-      const galleryRect = gallery.getBoundingClientRect();
-      setIsDark(galleryRect.top <= 72);
+      darkSections.forEach((section) => {
+        const rect = section.getBoundingClientRect();
+        if (rect.top <= headerY && rect.bottom > headerY) {
+          dark = true;
+        }
+      });
+
+      setIsDark(dark);
     };
 
     window.addEventListener("scroll", onScroll, { passive: true });
@@ -107,17 +103,10 @@ export function Navbar() {
                 <div className="grid gap-8 md:grid-cols-3">
                   {services.map((service) => (
                     <div key={service.eyebrow} className="flex flex-col">
-                      <div className="mb-6 aspect-square overflow-hidden rounded-[var(--radius-large)]">
-                        {service.animationType === "rive" ? (
-                          <RiveAnimation src={service.animation} className="h-full w-full" />
-                        ) : (
-                          <LottieAnimation src={service.animation} className="h-full w-full" />
-                        )}
-                      </div>
                       <p className="eyebrow mb-2">{service.eyebrow}</p>
                       <h3 className="heading-h5 mb-3">{service.title}</h3>
                       <p className="mb-6 text-[0.9375rem] leading-relaxed">{service.description}</p>
-                      <ButtonLink href={service.href} flipArrow={service.eyebrow === "Webflow"}>
+                      <ButtonLink href={service.href}>
                         {service.linkText}
                       </ButtonLink>
                     </div>

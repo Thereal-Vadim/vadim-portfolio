@@ -14,7 +14,7 @@ export function CTASection() {
             <div className="max-w-3xl">
               <div className="mb-8">
                 <AnimatedTitle
-                  headline="Ready to start?"
+                  headline="Ready to launch?"
                   alternate="Let's have a chat."
                   singleLine
                 />
@@ -23,11 +23,11 @@ export function CTASection() {
               <div className="grid gap-8 md:grid-cols-[1fr_minmax(200px,max-content)]">
                 <div>
                   <p className="text-medium mb-6 max-w-xl leading-relaxed">
-                    Whether you have a brief ready or just an idea you want to talk
-                    through, get in touch. No obligations, no agency pitch – just a
-                    conversation.
+                    Whether you have a detailed brief or just an early idea you want to
+                    talk through, feel free to reach out. No complex agency pitches -
+                    just a direct, honest conversation about your goals.
                   </p>
-                  <ButtonLink href="/contact" flipArrow>
+                  <ButtonLink href="mailto:12vadim.filatov2001@gmail.com" flipArrow external>
                     start a conversation
                   </ButtonLink>
                 </div>

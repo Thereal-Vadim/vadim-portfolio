@@ -1,11 +1,20 @@
 "use client";
 
-import { useEffect, useRef } from "react";
+import { useEffect, useLayoutEffect, useRef, useState } from "react";
+import { createPortal } from "react-dom";
+import { getHandPointer } from "@/lib/handPointer";
 
 export function CustomCursor() {
   const cursorRef = useRef<HTMLDivElement>(null);
+  const [mounted, setMounted] = useState(false);
 
   useEffect(() => {
+    setMounted(true);
+  }, []);
+
+  useLayoutEffect(() => {
+    if (!mounted) return;
+
     const cursor = cursorRef.current;
     if (!cursor) return;
 
@@ -15,57 +24,58 @@ export function CustomCursor() {
     if (isTouchDevice) {
       cursor.style.display = "none";
       document.body.style.cursor = "auto";
-      return;
     }
 
     let x = 0;
     let y = 0;
     let currentX = 0;
     let currentY = 0;
+    let rafId = 0;
 
     const onMouseMove = (e: MouseEvent) => {
+      const hand = getHandPointer();
+      if (hand.active && hand.visible) return;
       x = e.clientX;
       y = e.clientY;
     };
 
     const animate = () => {
-      currentX += (x - currentX) * 0.15;
-      currentY += (y - currentY) * 0.15;
+      const hand = getHandPointer();
+      const handDriving = hand.active && hand.visible;
+
+      if (handDriving) {
+        x = hand.x;
+        y = hand.y;
+        cursor.style.display = "";
+      } else if (isTouchDevice && !hand.active) {
+        cursor.style.display = "none";
+      }
+
+      cursor.classList.toggle("is-pinched", handDriving && hand.pinched);
+
+      const ease = handDriving ? 0.18 : 0.15;
+      currentX += (x - currentX) * ease;
+      currentY += (y - currentY) * ease;
       cursor.style.transform = `translate3d(${currentX}px, ${currentY}px, 0) translate(-50%, -50%)`;
-      requestAnimationFrame(animate);
+      rafId = requestAnimationFrame(animate);
     };
-
-    const updateTheme = () => {
-      const sections = document.querySelectorAll("[data-scroll]");
-      let isDark = false;
-
-      sections.forEach((section) => {
-        const rect = section.getBoundingClientRect();
-        if (rect.top <= 80 && rect.bottom >= 80) {
-          isDark = section.getAttribute("data-scroll") === "dark";
-        }
-      });
-
-      cursor.classList.toggle("is-dark", isDark);
-    };
-
-    const onScroll = () => updateTheme();
 
     window.addEventListener("mousemove", onMouseMove);
-    window.addEventListener("scroll", onScroll, { passive: true });
-    animate();
-    updateTheme();
+    rafId = requestAnimationFrame(animate);
 
     return () => {
       window.removeEventListener("mousemove", onMouseMove);
-      window.removeEventListener("scroll", onScroll);
+      cancelAnimationFrame(rafId);
     };
-  }, []);
+  }, [mounted]);
 
-  return (
+  if (!mounted) return null;
+
+  return createPortal(
     <div ref={cursorRef} className="custom-cursor" aria-hidden="true">
       <span className="bracket left">(</span>
       <span className="bracket right">)</span>
-    </div>
+    </div>,
+    document.body,
   );
 }

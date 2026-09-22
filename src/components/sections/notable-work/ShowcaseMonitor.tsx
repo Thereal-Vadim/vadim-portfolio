@@ -1,4 +1,5 @@
 import type { NotableWorkShowcase } from "@/data/notableWork";
+import { NotablePreviewList } from "@/components/sections/notable-work/NotablePreviewList";
 
 export function ShowcaseMonitor({ showcase }: { showcase: NotableWorkShowcase }) {
   return (
@@ -7,12 +8,7 @@ export function ShowcaseMonitor({ showcase }: { showcase: NotableWorkShowcase })
         <div className="notable-monitor-scene">
           <div className="notable-side notable-side--monitor">
             <p className="notable-side__quote">{showcase.insight}</p>
-            <p className="notable-side__label">{showcase.notableLabel}</p>
-            <ul className="notable-side__list">
-              {showcase.items.map((item) => (
-                <li key={item.label}>{item.label}</li>
-              ))}
-            </ul>
+            <NotablePreviewList items={showcase.items} notableLabel={showcase.notableLabel} />
           </div>
 
           <div className="notable-iphone">
