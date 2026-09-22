@@ -31,10 +31,6 @@ export function DesignPageSection() {
               <p>{designPage.audience}</p>
             </div>
 
-            {/* Swap this block for a Figma / prototype interactive later. */}
-            <div className="dev-media-placeholder">
-              <p>добавить интерактив: листать экраны в Figma</p>
-            </div>
           </div>
 
           <div className="dev-page-stacks">

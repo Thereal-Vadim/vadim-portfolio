@@ -49,11 +49,12 @@ export function HeroHeyBlock() {
             <div className="padding-section-large pb-12">
               <div className="flex w-full flex-col items-center">
                 <div className="relative w-full text-center">
-                  <h1 className="heading-h1">
-                    designing (<span data-hero-word="1">&nbsp;</span>)
-                  </h1>
-                  <h1 className="heading-h1 mt-4 relative">
-                    for (<span data-hero-word="2">&nbsp;</span>)
+                  <h1 className="m-0">
+                    <span className="heading-h1 block">
+                      designing (<span data-hero-word="1">&nbsp;</span>)
+                    </span>
+                    <span className="heading-h1 relative mt-4 block">
+                      for (<span data-hero-word="2">&nbsp;</span>)
                     {isDesktop ? (
                       <span
                         ref={startRef}
@@ -61,6 +62,7 @@ export function HeroHeyBlock() {
                         aria-hidden="true"
                       />
                     ) : null}
+                    </span>
                   </h1>
                 </div>
               </div>

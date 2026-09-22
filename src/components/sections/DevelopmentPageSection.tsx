@@ -32,10 +32,6 @@ export function DevelopmentPageSection() {
               <p>{developmentPage.audience}</p>
             </div>
 
-            {/* Swap this block for the coding video / interactive later. */}
-            <div className="dev-media-placeholder">
-              <p>добавить видео где я занимаюсь кодингом или что-то в этом духе</p>
-            </div>
           </div>
 
           <div className="dev-page-stacks">

@@ -14,6 +14,7 @@ export function CTASection() {
             <div className="max-w-3xl">
               <div className="mb-8">
                 <AnimatedTitle
+                  as="h2"
                   headline="Ready to launch?"
                   alternate="Let's have a chat."
                   singleLine
@@ -41,7 +42,9 @@ export function CTASection() {
                       className="text-[0.9375rem] underline-offset-2 hover:underline"
                       target={link.href.startsWith("http") ? "_blank" : undefined}
                       rel={
-                        link.href.startsWith("http") ? "noopener noreferrer" : undefined
+                        link.href.startsWith("http")
+                          ? "me noopener noreferrer"
+                          : "me"
                       }
                     >
                       {link.label}

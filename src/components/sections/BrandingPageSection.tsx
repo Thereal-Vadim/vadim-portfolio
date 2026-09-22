@@ -27,10 +27,6 @@ export function BrandingPageSection() {
               <p>{brandingPage.audience}</p>
             </div>
 
-            {/* Swap this block for a phone / social-feed interactive later. */}
-            <div className="dev-media-placeholder">
-              <p>добавить интерактив: листать телефон с соцсетями</p>
-            </div>
           </div>
 
           <div className="dev-page-stacks">

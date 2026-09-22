@@ -54,8 +54,8 @@ export function FootballAcademySection() {
             <Image
               src={page.hero.lockup}
               alt="MSM Football Academy Prague"
-              width={512}
-              height={512}
+              width={697}
+              height={812}
               priority
               className="work-page-hero-lockup"
             />

@@ -8,6 +8,7 @@ type AnimatedTitleProps = {
   alternate: string;
   singleLine?: boolean;
   className?: string;
+  as?: "h1" | "h2";
 };
 
 function TitleText({ value }: { value: string }) {
@@ -26,6 +27,7 @@ export function AnimatedTitle({
   alternate,
   singleLine = false,
   className = "",
+  as: Heading = "h1",
 }: AnimatedTitleProps) {
   const [hovered, setHovered] = useState(false);
 
@@ -35,13 +37,13 @@ export function AnimatedTitle({
       onMouseEnter={() => setHovered(true)}
       onMouseLeave={() => setHovered(false)}
     >
-      <h1 className="heading-h1 animated-title-sizer" aria-hidden="true">
+      <div className="heading-h1 animated-title-sizer" aria-hidden="true">
         <TitleText value={headline} />
-      </h1>
-      <h1 className="heading-h1 animated-title-sizer" aria-hidden="true">
+      </div>
+      <div className="heading-h1 animated-title-sizer" aria-hidden="true">
         <TitleText value={alternate} />
-      </h1>
-      <h1
+      </div>
+      <Heading
         className="heading-h1 animated-title-layer"
         style={{
           opacity: hovered ? 0 : 1,
@@ -49,17 +51,17 @@ export function AnimatedTitle({
         }}
       >
         <TitleText value={headline} />
-      </h1>
-      <h1
+      </Heading>
+      <div
         className="heading-h1 animated-title-layer"
         style={{
           opacity: hovered ? 1 : 0,
           filter: hovered ? "blur(0)" : "blur(8px)",
         }}
-        aria-hidden={!hovered}
+        aria-hidden="true"
       >
         <TitleText value={alternate} />
-      </h1>
+      </div>
       <div className="plus-sign">
         <PlusSign />
       </div>

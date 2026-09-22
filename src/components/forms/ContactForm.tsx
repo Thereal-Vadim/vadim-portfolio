@@ -80,6 +80,7 @@ export function ContactForm() {
           href={`mailto:${footerContact.email}`}
           data-hover="no-cursor"
           className="footer-channel-link"
+          rel="me"
         >
           {footerContact.email}
         </a>
@@ -90,7 +91,7 @@ export function ContactForm() {
             data-hover="no-cursor"
             className="footer-channel-link"
             target="_blank"
-            rel="noopener noreferrer"
+            rel="me noopener noreferrer"
           >
             {link.label}
           </a>

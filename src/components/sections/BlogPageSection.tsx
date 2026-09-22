@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { blogPage, blogPosts } from "@/data/content";
+import { blogPage, publishedBlogPosts } from "@/data/content";
 import { AnimatedTitle } from "@/components/ui/AnimatedTitle";
 
 export function BlogPageSection() {
@@ -23,7 +23,7 @@ export function BlogPageSection() {
       <div className="padding-global">
         <div className="container-large">
           <div className="blog-page-list">
-            {blogPosts.map((post) => (
+            {publishedBlogPosts.map((post) => (
               <article key={post.slug} className="blog-page-post">
                 <p className="eyebrow mb-3">
                   {post.status} · {post.category}

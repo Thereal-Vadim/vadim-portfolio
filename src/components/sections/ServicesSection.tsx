@@ -47,6 +47,7 @@ export function ServicesSection() {
           <div className="services-intro">
             <div className="max-w-5xl">
               <AnimatedTitle
+                as="h2"
                 headline="Let's make something."
                 alternate="Good work starts here."
                 singleLine

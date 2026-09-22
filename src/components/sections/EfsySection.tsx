@@ -14,6 +14,17 @@ function RichText({ value }: { value: string }) {
   });
 }
 
+function ComingSoon({ children }: { children: React.ReactNode }) {
+  return (
+    <div className="work-page-soon">
+      <div className="work-page-soon-media" aria-hidden="true">
+        {children}
+      </div>
+      <p className="work-page-soon-label">Coming Soon</p>
+    </div>
+  );
+}
+
 function BrowserFrame({
   children,
   label,
@@ -138,19 +149,9 @@ export function EfsySection() {
                   ))}
                 </div>
               </div>
-              <BrowserFrame label="efsy.cz/menu">
-                <Image
-                  src={page.menu.screens[0].src}
-                  alt={page.menu.screens[0].alt}
-                  width={page.menu.screens[0].width}
-                  height={page.menu.screens[0].height}
-                  className="work-page-image"
-                  sizes="(min-width: 768px) 70vw, 90vw"
-                />
-              </BrowserFrame>
               <div className="fa-desktop-row">
-                {page.menu.screens.slice(1).map((screen) => (
-                  <BrowserFrame key={screen.src} label="efsy.cz/menu">
+                {page.menu.screens.map((screen) => (
+                  <figure key={screen.src} className="work-page-frame">
                     <Image
                       src={screen.src}
                       alt={screen.alt}
@@ -159,7 +160,7 @@ export function EfsySection() {
                       className="work-page-image"
                       sizes="(min-width: 768px) 35vw, 90vw"
                     />
-                  </BrowserFrame>
+                  </figure>
                 ))}
               </div>
             </section>
@@ -233,47 +234,53 @@ export function EfsySection() {
                     ))}
                   </div>
                 </div>
-                <div className="work-page-phones efsy-phones">
-                  {page.app.phones.map((phone) => (
-                    <figure key={phone.src} className="work-page-phone">
-                      <Image
-                        src={phone.src}
-                        alt={phone.alt}
-                        width={phone.width}
-                        height={phone.height}
-                        className="work-page-image"
-                        sizes="(min-width: 768px) 18rem, 45vw"
-                      />
-                    </figure>
-                  ))}
-                </div>
+                <ComingSoon>
+                  <div className="work-page-phones efsy-phones">
+                    {page.app.phones.map((phone) => (
+                      <figure key={phone.src} className="work-page-phone">
+                        <Image
+                          src={phone.src}
+                          alt=""
+                          width={phone.width}
+                          height={phone.height}
+                          className="work-page-image"
+                          sizes="(min-width: 768px) 18rem, 45vw"
+                        />
+                      </figure>
+                    ))}
+                  </div>
+                </ComingSoon>
               </div>
             </section>
 
             <section className="work-page-block">
-              <div className="work-page-split">
-                <h2 className="heading-h5">{page.events.title}</h2>
-                <div className="work-page-copy">
-                  {page.events.copy.map((paragraph) => (
-                    <p key={paragraph}>
-                      <RichText value={paragraph} />
-                    </p>
-                  ))}
+              <div className="work-page-split work-page-split--mobile">
+                <div>
+                  <h2 className="heading-h5">{page.website.title}</h2>
+                  <div className="work-page-copy">
+                    {page.website.copy.map((paragraph) => (
+                      <p key={paragraph}>
+                        <RichText value={paragraph} />
+                      </p>
+                    ))}
+                  </div>
                 </div>
-              </div>
-              <div className="work-page-gallery work-page-gallery--three">
-                {page.events.images.map((image) => (
-                  <figure key={image.src} className="work-page-frame">
-                    <Image
-                      src={image.src}
-                      alt={image.alt}
-                      width={image.width}
-                      height={image.height}
-                      className="work-page-image"
-                      sizes="(min-width: 768px) 33vw, 90vw"
-                    />
-                  </figure>
-                ))}
+                <ComingSoon>
+                  <div className="fa-desktop-row">
+                    {page.website.screens.map((screen) => (
+                      <BrowserFrame key={screen.src} label="efsy.cz">
+                        <Image
+                          src={screen.src}
+                          alt=""
+                          width={screen.width}
+                          height={screen.height}
+                          className="work-page-image"
+                          sizes="(min-width: 768px) 22vw, 90vw"
+                        />
+                      </BrowserFrame>
+                    ))}
+                  </div>
+                </ComingSoon>
               </div>
             </section>
 

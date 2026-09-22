@@ -1,14 +1,18 @@
 import { notFound } from "next/navigation";
 import { Footer } from "@/components/layout/Footer";
+import { JsonLd } from "@/components/seo/JsonLd";
 import { BlogArticleSection } from "@/components/sections/BlogArticleSection";
-import { blogPosts, getBlogPost } from "@/data/content";
+import { getBlogPost, publishedBlogPosts } from "@/data/content";
+import { blogPostingJsonLd, breadcrumbJsonLd, pageMetadata } from "@/lib/site";
 
 type BlogArticlePageProps = {
   params: Promise<{ slug: string }>;
 };
 
+export const dynamicParams = false;
+
 export function generateStaticParams() {
-  return blogPosts.map((post) => ({ slug: post.slug }));
+  return publishedBlogPosts.map((post) => ({ slug: post.slug }));
 }
 
 export async function generateMetadata({ params }: BlogArticlePageProps) {
@@ -16,13 +20,20 @@ export async function generateMetadata({ params }: BlogArticlePageProps) {
   const post = getBlogPost(slug);
 
   if (!post) {
-    return { title: "Blog | Vadim Filatov" };
+    return pageMetadata({
+      title: "Blog",
+      description: "This note is not published.",
+      path: "/blog",
+      index: false,
+    });
   }
 
-  return {
-    title: `${post.title} | Vadim Filatov`,
+  return pageMetadata({
+    title: post.title.replace(/\s*\n\s*/g, " "),
     description: post.excerpt,
-  };
+    path: `/blog/${post.slug}`,
+    type: "article",
+  });
 }
 
 export default async function BlogArticlePage({ params }: BlogArticlePageProps) {
@@ -35,6 +46,14 @@ export default async function BlogArticlePage({ params }: BlogArticlePageProps) 
 
   return (
     <>
+      <JsonLd data={blogPostingJsonLd(post)} />
+      <JsonLd
+        data={breadcrumbJsonLd([
+          { name: "Home", path: "/" },
+          { name: "Blog", path: "/blog" },
+          { name: post.title.replace(/\s*\n\s*/g, " "), path: `/blog/${post.slug}` },
+        ])}
+      />
       <BlogArticleSection post={post} />
       <Footer />
     </>

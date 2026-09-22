@@ -92,8 +92,8 @@ export const notableWorkShowcases: NotableWorkShowcase[] = [
       {
         label: "Efsy",
         href: "/work/efsy",
-        previewImage: "/images/projects/efsy/preview-home.jpg",
-        previewCaption: "Logo, menus, posters, Instagram, app and event graphics",
+        previewImage: "/images/projects/efsy/preview-case.jpg",
+        previewCaption: "Logo, menus, posters, Instagram and the guest app",
       },
       {
         label: "MSM Academy",

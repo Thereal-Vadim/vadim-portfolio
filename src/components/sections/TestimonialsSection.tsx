@@ -18,6 +18,7 @@ export function TestimonialsSection() {
           <div className="padding-section-large">
             <div className="mb-16 max-w-3xl">
               <AnimatedTitle
+                as="h2"
                 headline="Don't take my word for it."
                 alternate="In their very own words…"
               />

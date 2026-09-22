@@ -35,6 +35,7 @@ export function AboutSection() {
             <div className="padding-section-large">
               <div className="max-w-3xl">
                 <AnimatedTitle
+                  as="h2"
                   headline="Great design, made simple."
                   alternate="One designer. Every detail."
                 />

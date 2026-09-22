@@ -48,99 +48,6 @@ export const heroWords = {
   ],
 };
 
-export const projects = [
-  {
-    title: "MYBLACKDOG",
-    href: "/works/myblackdog",
-    image:
-      "https://cdn.prod.website-files.com/6a12b854c34a30326bc9d55e/6a14bdf44892204acf9a273f_64a9b87a6b72ccc0d3e73674_mbd4.jpeg",
-  },
-  {
-    title: "Star Alliance",
-    href: "/works/star-alliance",
-    image:
-      "https://cdn.prod.website-files.com/6a12b854c34a30326bc9d55e/6a14bdfd8da310479a4bf2e4_5d278859e21831d7018e9c85_star-3.jpeg",
-  },
-  {
-    title: "The Concsious Workplace",
-    href: "/works/the-concsious-workplace",
-    image:
-      "https://cdn.prod.website-files.com/6a12b854c34a30326bc9d55e/6a14bdfee1f7bde0b50423f4_61c315d64681fb46ff793459_tcw%25201.jpeg",
-  },
-  {
-    title: "Oakmasters",
-    href: "/works/oakmasters",
-    image:
-      "https://cdn.prod.website-files.com/6a12b854c34a30326bc9d55e/6a14bdf6acad2e58c3168efe_5d278820fc344f36b2dd90fd_oakmasters-1.jpeg",
-  },
-  {
-    title: "QNTM Body",
-    href: "/works/qntm-body",
-    image:
-      "https://cdn.prod.website-files.com/6a12b854c34a30326bc9d55e/6a14bdfaccb3b19bd6d49112_65b2ad43861e45c60b7eb7ac_qntm%2520body%25201.jpeg",
-  },
-  {
-    title: "Crown Gardens",
-    href: "/works/crown-gardens",
-    image:
-      "https://cdn.prod.website-files.com/6a12b854c34a30326bc9d55e/6a14bde0c5de2ad06bdfc696_590b2fba6f56570e31b8eeee_crown-gardens-1.jpeg",
-  },
-  {
-    title: "zai ski",
-    href: "/works/zai-ski",
-    image:
-      "https://cdn.prod.website-files.com/6a12b854c34a30326bc9d55e/6a14be04868ec7b6481f4709_590b2f5b96d6fe11f3fcfebe_zai-ski-2.jpeg",
-  },
-  {
-    title: "Crown the Hen",
-    href: "/works/crown-the-hen",
-    image:
-      "https://cdn.prod.website-files.com/6a12b854c34a30326bc9d55e/6a14bde10027797f031b2260_599dbda8106e7c00019f7b71_crown-the-hen-1.jpeg",
-  },
-  {
-    title: "Auteur",
-    href: "/works/auteur",
-    image:
-      "https://cdn.prod.website-files.com/6a12b854c34a30326bc9d55e/6a14bdd71733221e984e0d50_65b2aef1861e45c60b7ffc13_auteur%25203.jpeg",
-  },
-  {
-    title: "Elixseri",
-    href: "/works/elixseri",
-    image:
-      "https://cdn.prod.website-files.com/6a12b854c34a30326bc9d55e/6a14bde5f9726ff8be1dd2e6_5e1ce47dd83c732300513a69_Foil-stamp-logo-mockup.jpeg",
-  },
-  {
-    title: "gardn",
-    href: "/works/gardn",
-    image:
-      "https://cdn.prod.website-files.com/6a12b854c34a30326bc9d55e/6a14bdebbdb0f147e3ea4f81_63171ebb0533dad159b709d3_gardn%25204.jpeg",
-  },
-  {
-    title: "SimplyDo",
-    href: "/works/simplydo",
-    image:
-      "https://cdn.prod.website-files.com/6a12b854c34a30326bc9d55e/6a14bdfcd2a23985cc7e1d92_61c35340729957807e32ba59_SimplyDo%25203.jpeg",
-  },
-  {
-    title: "zai golf",
-    href: "/works/zai-golf",
-    image:
-      "https://cdn.prod.website-files.com/6a12b854c34a30326bc9d55e/6a14be047a4ebf77bbbe7cac_5d278893a01d9f30c5b769a1_zai-golf-2.jpeg",
-  },
-  {
-    title: "whitespace1971",
-    href: "/works/whitespace1971",
-    image:
-      "https://cdn.prod.website-files.com/6a12b854c34a30326bc9d55e/6a14be02d2a23985cc7e1e89_5bfd27d6a138fd4b96574f22_whitespace1971_1.jpeg",
-  },
-  {
-    title: "London Farmers' Markets",
-    href: "/works/london-farmers-markets",
-    image:
-      "https://cdn.prod.website-files.com/6a12b854c34a30326bc9d55e/6a14bdf27cbd72dcfbb5ba05_5c4ee58fdfbd6cee09277f2f_lfm-1.jpeg",
-  },
-];
-
 export const services = [
   {
     eyebrow: "Development",
@@ -274,6 +181,7 @@ export const menuLinks = [
 ];
 
 export const navLinks = [
+  { label: "Work.", href: "/#gallery" },
   { label: "Development.", href: "/services/development" },
   { label: "Branding.", href: "/services/branding" },
   { label: "Design.", href: "/services/design" },
@@ -565,7 +473,7 @@ export const blogPage = {
   headline: "Notes from the desk.",
   alternate: "Design. Code. Process.",
   intro:
-    "Short pieces on shipping products, not files. Placeholders for now - I'll fill them in as the writing lands.",
+    "Short pieces on shipping products, not files. New notes land here once they're ready to read.",
 };
 
 export const blogPosts = [
@@ -661,8 +569,10 @@ export const blogPosts = [
   },
 ];
 
+export const publishedBlogPosts = blogPosts.filter((post) => post.status !== "Draft");
+
 export function getBlogPost(slug: string) {
-  return blogPosts.find((post) => post.slug === slug);
+  return publishedBlogPosts.find((post) => post.slug === slug);
 }
 
 const msmAsset = (file: string) => `/images/projects/msm-academy/${file}`;
@@ -805,7 +715,7 @@ export const footballAcademyPage = {
   hero: {
     photo: footballAsset("hero.jpg"),
     photoAlt: "MSM Football Academy players celebrating on the pitch",
-    lockup: footballAsset("lockup.png"),
+    lockup: footballAsset("lockup-white.png"),
   },
   brand: {
     title: "Brand identity and lockups",
@@ -975,37 +885,31 @@ export const efsyPage = {
         height: 800,
       },
       {
-        src: efsyAsset("ig-cups-clean.jpg"),
-        alt: "Iced drinks in branded Efsy cups on the terrace",
-        width: 620,
-        height: 400,
+        src: efsyAsset("facade.jpg"),
+        alt: "Efsy storefront on Krásova with the wordmark above the door",
+        width: 1024,
+        height: 682,
       },
     ],
   },
   menu: {
     title: "Menu",
     copy: [
-      "**One kitchen, two appetites.** Garden side until 18:00, cave side after - same type, same prices, a flip from cream to night.",
-      "Designed as a live page the floor can update, not a PDF that dies in a folder. Hierarchy stays quiet so specials and the 2-for-2 cocktail line still read at the table.",
+      "**One kitchen, two appetites.** Garden side until 18:00, cave side after - same type, same prices, a flip from cream paper to burgundy.",
+      "Printed as cards the floor can hand over, not a file that dies in a folder. Hierarchy stays quiet so food, specials, and the cocktail line still read at the table.",
     ],
     screens: [
       {
-        src: efsyAsset("menu-day.jpg"),
-        alt: "Efsy digital menu: One kitchen, two appetites, garden side",
-        width: 1600,
-        height: 1000,
+        src: efsyAsset("menu-print-day.jpg"),
+        alt: "Printed burgundy cocktail menus on the Efsy counter",
+        width: 2400,
+        height: 1800,
       },
       {
-        src: efsyAsset("menu-mid.jpg"),
-        alt: "Garden-side menu: matcha, seasonal drinks, pastry",
-        width: 1600,
-        height: 1000,
-      },
-      {
-        src: efsyAsset("menu-night.jpg"),
-        alt: "Cave-side menu: signature cocktails and evening bites",
-        width: 1600,
-        height: 1000,
+        src: efsyAsset("menu-print-night.jpg"),
+        alt: "Cream and burgundy printed menus on the Efsy bar",
+        width: 2400,
+        height: 1800,
       },
     ],
   },
@@ -1077,30 +981,24 @@ export const efsyPage = {
       },
     ],
   },
-  events: {
-    title: "Event decoration",
+  website: {
+    title: "Website",
     copy: [
-      "Graphics and dressing for private tables, brunch takeovers, and in-house nights. **The room still reads as Efsy when it fills up.**",
-      "Staff tees, table rhythm, and print that can sit next to plants without fighting the garden - or disappear into the cave after dark.",
+      "The same Fresh AM / Sexy PM language on a live page - **booking, the menu, and the night switch.**",
+      "The site has to feel like the cups and the printed cards, not a template with a logo pasted on.",
     ],
-    images: [
+    screens: [
       {
-        src: efsyAsset("event-table-clean.jpg"),
-        alt: "Private table setup on the Efsy terrace",
-        width: 620,
-        height: 430,
+        src: efsyAsset("home.jpg"),
+        alt: "Efsy website home",
+        width: 1600,
+        height: 1000,
       },
       {
-        src: efsyAsset("hero.jpg"),
-        alt: "Service in the main hall with Efsy-branded staff shirts",
-        width: 720,
-        height: 900,
-      },
-      {
-        src: efsyAsset("bar-action.webp"),
-        alt: "Bar service during an evening service",
-        width: 640,
-        height: 800,
+        src: efsyAsset("menu-day.jpg"),
+        alt: "Efsy website menu",
+        width: 1600,
+        height: 1000,
       },
     ],
   },
@@ -1265,7 +1163,6 @@ export const footerContact = {
 export const footerLinks = [
   { label: "Privacy Policy", href: "/privacy-policy" },
   { label: "Terms of Service", href: "/terms-of-service" },
-  { label: "Cookies Settings", href: "#" },
 ];
 
 export const socialLinks = [
